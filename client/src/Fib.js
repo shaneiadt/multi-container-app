@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default class extends React.Component {
     state = {
-        sendIndexes: [],
+        seenIndexes: [],
         values: {},
         index: ''
     };
@@ -24,7 +24,7 @@ export default class extends React.Component {
     }
 
     renderSeenIndexes() {
-        return this.state.sendIndexes.map(({ number }) => number).join(', ');
+        return this.state.seenIndexes.map(({ number }) => number).join(', ');
     }
 
     renderValues() {
@@ -49,6 +49,8 @@ export default class extends React.Component {
         });
 
         this.setState({ index: '' });
+        this.fetchIndexes();
+        this.fetchValues();
     }
 
     render() {
