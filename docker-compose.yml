@@ -10,6 +10,9 @@ services:
         image: 'redis:latest'
 
     nginx:
+        depends_on: 
+            - api
+            - client
         build:
             dockerfile: Dockerfile.dev
             context: ./nginx
@@ -41,6 +44,8 @@ services:
         volumes: 
             - /app/node_modules
             - ./client:/app
+        environment: 
+            - CHOKIDAR_USEPOLLING=true
     
     worker:
         build:
