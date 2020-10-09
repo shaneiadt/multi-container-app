@@ -9,7 +9,15 @@ services:
     redis:
         image: 'redis:latest'
 
-    server:
+    nginx:
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./nginx
+        restart: always
+        ports: 
+            - '3050:80'
+
+    api:
         build: 
             dockerfile: Dockerfile.dev
             context: ./server
@@ -26,6 +34,7 @@ services:
             - PGPORT=5432
     
     client:
+        stdin_open: true
         build:
             dockerfile: Dockerfile.dev
             context: ./client
