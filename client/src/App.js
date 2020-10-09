@@ -13,9 +13,9 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Welcome</h1>
           <Link to="/">Home</Link>
-          <Link to="/otherpage">Other Page</Link>
+          <Link to="/otherpage">Other Page...</Link>
         </header>
-        <div>
+        <div style={{ padding: '2em' }}>
           <Route exact path="/" component={Fib} />
           <Route path="/otherpage" component={OtherPage} />
         </div>
