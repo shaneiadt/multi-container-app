@@ -1,3 +1,9 @@
 # Working with Multiple Containers: Docker
 
-:D
+## Run locally
+
+```
+docker-compose up
+```
+
+Then go to: http://localhost:3050
