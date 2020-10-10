@@ -1,4 +1,4 @@
-# Working with Multiple Containers: Docker
+# Working with Multiple Docker Containers
 
 ## Run locally
 
