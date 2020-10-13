@@ -1,0 +1,23 @@
+sudo: required
+os:
+    - linux
+
+services:
+    - docker
+
+before_install:
+    - docker build -t shaneiadt/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true shaneiadt/react-test npm run test -- --coverage
+
+after_success:
+    - docker build -t shaneiadt/multi-client ./client
+    - docker build -t shaneiadt/multi-nginx ./nginx
+    - docker build -t shaneiadt/multi-server ./server
+    - docker build -t shaneiadt/multi-worker ./worker
+    - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push shaneiadt/multi-client
+    - docker push shaneiadt/multi-nginx
+    - docker push shaneiadt/multi-server
+    - docker push shaneiadt/multi-worker
